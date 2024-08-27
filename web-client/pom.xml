@@ -2,21 +2,116 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>top.rabbitbyte</groupId>
-    <artifactId>web-client</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>web-client</name>
-    <description>web-client</description>
 
     <parent>
         <groupId>top.rabbitbyte</groupId>
         <artifactId>pre-mall</artifactId>
         <version>1.0</version>
     </parent>
+
+    <modules>
+<!--        <module>web-customer</module>-->
+<!--        <module>web-driver</module>-->
+<!--        <module>web-mgr</module>-->
+    </modules>
+
+    <artifactId>web</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
     <dependencies>
         <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-util</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>common-log</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-system-client</artifactId>
+            <version>1.0</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>top.rabbitbyte</groupId>-->
+<!--            <artifactId>service-coupon-client</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>top.rabbitbyte</groupId>-->
+<!--            <artifactId>service-driver-client</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>top.rabbitbyte</groupId>-->
+<!--            <artifactId>service-order-client</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>top.rabbitbyte</groupId>-->
+<!--            <artifactId>service-customer-client</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>top.rabbitbyte</groupId>-->
+<!--            <artifactId>service-map-client</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>top.rabbitbyte</groupId>-->
+<!--            <artifactId>service-rules-client</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>top.rabbitbyte</groupId>-->
+<!--            <artifactId>service-dispatch-client</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>top.rabbitbyte</groupId>-->
+<!--            <artifactId>service-payment-client</artifactId>-->
+<!--            <version>1.0</version>-->
+<!--        </dependency>-->
+
+        <!-- 服务调用feign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
+        <!-- 服务注册 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!-- 服务配置 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <!-- 流量控制 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -25,48 +120,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <configuration>
-                    <mainClass>top.rabbitbyte.webclient.WebClientApplication</mainClass>
-                    <skip>true</skip>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

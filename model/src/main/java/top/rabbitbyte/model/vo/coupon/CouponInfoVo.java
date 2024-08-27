@@ -1,28 +1,24 @@
-package top.rabbitbyte.model.entity.coupon;
+package top.rabbitbyte.model.vo.coupon;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import top.rabbitbyte.model.entity.base.BaseEntity;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * @BelongsProject: pre-mall
- * @BelongsPackage: top.rabbitbyte.model.entity.coupon
+ * @BelongsPackage: top.rabbitbyte.model.vo.coupon
  * @Author: nemo2048
- * @CreateTime: 2024-08-22  21:58
- * @Description:
+ * @CreateTime: 2024-08-23  16:09
+ * @Description: 基础优惠券信息
  * @Version: 1.0
  */
-@Data
-@Schema(description = "CouponInfo")
-@TableName("coupon_info")
-public class CouponInfo extends BaseEntity {
-    private static final  long serialVersionUID = 1L;
 
+@Data
+@Schema(description = "CouponInfoVo")
+public class CouponInfoVo {
     @Schema(description = "优惠卷类型 1 现金券 2 折扣")
     @TableField("coupon_type")
     private Integer couponType;
@@ -78,5 +74,4 @@ public class CouponInfo extends BaseEntity {
     @Schema(description = "状态[0-未发布，1-已发布， -1-已过期]")
     @TableField("status")
     private Integer status;
-
 }
