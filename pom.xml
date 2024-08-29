@@ -74,6 +74,7 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+                <scope>compile</scope> <!-- 确保依赖范围为compile -->
             </dependency>
             <!--mysql-->
             <dependency>

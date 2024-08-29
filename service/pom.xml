@@ -21,7 +21,7 @@
 <!--        <module>service-mq</module>-->
 <!--        <module>service-order</module>-->
 <!--        <module>service-payment</module>-->
-<!--        <module>service-customer</module>-->
+        <module>service-customer</module>
 <!--        <module>service-system</module>-->
     </modules>
 
@@ -29,6 +29,7 @@
         <dependency>
             <groupId>top.rabbitbyte</groupId>
             <artifactId>service-util</artifactId>
+            <scope>compile</scope>
             <version>1.0</version>
         </dependency>
         <dependency>

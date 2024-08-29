@@ -46,6 +46,23 @@ public class CouponInfoController {
         pageVo.setLimit(limit);
         return Result.ok(pageVo);
     }
+//
+//    @Operation(summary = "全部优惠券分页列表")
+//    @GetMapping("findAllPage/{page}/{limit}")
+//    public Result<PageVo<NoUseCouponVo>> findAllPage(
+//            @Parameter(name = "page",description = "当前页码",required = true)
+//            @PathVariable Long page,
+//            @Parameter(name = "limit", description = "每页记录数", required = true)
+//            @PathVariable Long limit){
+//        Page<CouponInfo> pageParam = new Page<>(page,limit);
+//        PageVo<NoUseCouponVo>pageVo = couponInfoService.findAllPage(pageParam);
+//    }
 
+
+    @Operation(description = "用户领取优惠券")
+    @GetMapping("/receive/{customerId}/{couponId}")
+    public Result<Boolean> recive(@PathVariable Long customerId, @PathVariable Long couponId){
+       return  Result.ok(couponInfoService.receive(customerId,couponId));
+    }
 
 }

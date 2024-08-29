@@ -10,8 +10,8 @@
     </parent>
 
     <modules>
-<!--        <module>service-coupon-client</module>-->
-<!--        <module>service-customer-client</module>-->
+        <module>service-coupon-client</module>
+        <module>service-customer-client</module>
 <!--        <module>service-driver-client</module>-->
 <!--        <module>service-order-client</module>-->
         <module>service-system-client</module>

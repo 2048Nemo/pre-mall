@@ -12,4 +12,6 @@ import top.rabbitbyte.model.vo.coupon.NoUseCouponVo;
 @Service
 public interface CouponInfoService extends IService<CouponInfo> {
     PageVo<NoReceiveCouponVo> findNoReceivePage(Page<CouponInfo> pageParam, Long customerId);
+
+    Boolean receive(Long customerId, Long couponId);
 }

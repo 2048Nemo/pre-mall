@@ -1,19 +1,20 @@
-package top.rabbitbyte.model.vo.customer;
+package top.rabbitbyte.model.entity.customer;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import top.rabbitbyte.model.entity.base.BaseEntity;
 
 /**
  * @BelongsProject: pre-mall
- * @BelongsPackage: top.rabbitbyte.model.vo.customer
+ * @BelongsPackage: top.rabbitbyte.model.entity.customer
  * @Author: nemo2048
- * @CreateTime: 2024-08-26  14:35
+ * @CreateTime: 2024-08-27  18:12
  * @Description: TODO
  * @Version: 1.0
  */
 @Data
-public class CustomerInfoVo {
-
+public class CustomerInfo extends BaseEntity {
+    private static final long serialVersionUID = 1L;
 
     @Schema(description = "微信openId")
     private String wxOpenId;
@@ -36,4 +37,6 @@ public class CustomerInfoVo {
     @Schema(description = "会员等级")
     private Integer level;
 
+    @Schema(description = "1有效，2禁用")
+    private Integer status;
 }
