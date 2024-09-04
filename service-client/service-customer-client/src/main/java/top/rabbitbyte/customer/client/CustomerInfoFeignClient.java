@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import result.Result;
 import top.rabbitbyte.model.form.customer.UpdateWxPhoneForm;
+import top.rabbitbyte.model.vo.customer.CustomerInfoVo;
 import top.rabbitbyte.model.vo.customer.CustomerLoginVo;
 
 @FeignClient(value = "service-customer")
@@ -19,6 +20,13 @@ public interface CustomerInfoFeignClient {
     @GetMapping("/customer/info/getCustomerLoginInfo/{customerId}")
     Result<CustomerLoginVo> getCustomerLoginInfo(@PathVariable("customerId") Long customerId);
 
+    /**
+     * @Operation(summary = "获取客户信息")
+     * @param customerId
+     * @return
+     */
+    @GetMapping("/customer/info/getCustomerInfo/{customerId}")
+    Result<CustomerInfoVo> getCustomerInfo(@PathVariable Long customerId);
     /**
      * 更新客户微信手机号码
      * @param updateWxPhoneForm

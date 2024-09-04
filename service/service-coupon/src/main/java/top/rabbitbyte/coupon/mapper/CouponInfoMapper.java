@@ -14,4 +14,6 @@ public interface CouponInfoMapper extends BaseMapper<CouponInfo> {
     IPage<NoUseCouponVo> findNoUsePage(Page<CouponInfo> pageParam, @Param("customerId") Long customerId);
     IPage<NoReceiveCouponVo> findNoReceivePage(Page<CouponInfo> pageParam, @Param("customerId") Long customerId);
 
+    //5.1 更新领取数量
+    int updateReceiveCount(Long couponId);
 }

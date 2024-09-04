@@ -12,17 +12,22 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import result.Result;
+import result.ResultCodeEnum;
 import top.rabbitbyte.coupon.service.CouponInfoService;
 import top.rabbitbyte.model.entity.coupon.CouponInfo;
 import top.rabbitbyte.model.vo.base.PageVo;
 import top.rabbitbyte.model.vo.coupon.NoReceiveCouponVo;
 import top.rabbitbyte.model.vo.coupon.NoUseCouponVo;
+import top.rabbitbyte.serviceutil.exception.PreMallException;
 
 @Tag(name = "优惠券接口信息")
 @RestController
@@ -30,6 +35,8 @@ import top.rabbitbyte.model.vo.coupon.NoUseCouponVo;
 public class CouponInfoController {
     @Autowired
     private CouponInfoService couponInfoService;
+
+    private Logger logger = LoggerFactory.getLogger(CouponInfoController.class);
 
     @Operation(summary = "查询未领取优惠券分页列表")
     @GetMapping("findNoReceivePage/{customerId}/{page}/{limit}")
@@ -62,7 +69,12 @@ public class CouponInfoController {
     @Operation(description = "用户领取优惠券")
     @GetMapping("/receive/{customerId}/{couponId}")
     public Result<Boolean> recive(@PathVariable Long customerId, @PathVariable Long couponId){
-       return  Result.ok(couponInfoService.receive(customerId,couponId));
+        try{
+            couponInfoService.receive(customerId,couponId);
+            return Result.ok(true);
+        }catch (RuntimeException e){
+            logger.error(e.getMessage());
+            return Result.fail(false);
+        }
     }
-
 }

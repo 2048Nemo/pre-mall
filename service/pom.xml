@@ -32,22 +32,36 @@
             <scope>compile</scope>
             <version>1.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>common-util</artifactId>
+            <scope>compile</scope>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-util</artifactId>
+            <version>1.0</version>
+        </dependency>
+
         <dependency>
             <groupId>top.rabbitbyte</groupId>
             <artifactId>common-log</artifactId>
             <version>1.0</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>top.rabbitbyte</groupId>-->
-<!--            <artifactId>service-system-client</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>top.rabbitbyte</groupId>-->
-<!--            <artifactId>service-coupon-client</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-system-client</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-coupon-client</artifactId>
+            <version>1.0</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>top.rabbitbyte</groupId>-->
 <!--            <artifactId>service-driver-client</artifactId>-->
@@ -58,11 +72,11 @@
 <!--            <artifactId>service-order-client</artifactId>-->
 <!--            <version>1.0</version>-->
 <!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>top.rabbitbyte</groupId>-->
-<!--            <artifactId>service-customer-client</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-customer-client</artifactId>
+            <version>1.0</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>top.rabbitbyte</groupId>-->
 <!--            <artifactId>service-rules-client</artifactId>-->

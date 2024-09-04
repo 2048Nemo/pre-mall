@@ -39,8 +39,8 @@
     </select>
 
     <update id="updateReceiveCount">
-        update coupon_info set receive_count = receive_count + 1
-        where id = #{couponId} and receive_count &lt; publish_count
+        update coupon_info set receive_count = receive_count + 1, update_time = now()
+        where id = #{couponId} and publish_count > receive_count and update_time &lt; now()
     </update>
 
     <select id="findNoUsePage" resultType="top.rabbitbyte.model.vo.coupon.NoUseCouponVo">

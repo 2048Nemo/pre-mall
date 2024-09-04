@@ -73,7 +73,7 @@ public class CustomerInfoServiceimp extends ServiceImpl<CustomerInfoMapper, Cust
     }
 
     @Override
-    public CustomerLoginVo getCustomerInfo(Long customerId) {
+    public CustomerLoginVo getCustomerLoginInfo(Long customerId) {
         // 获取用户信息
         CustomerInfo customerInfo = customerInfoMapper.selectById(customerId);
         //创建返回结果
@@ -85,6 +85,19 @@ public class CustomerInfoServiceimp extends ServiceImpl<CustomerInfoMapper, Cust
         String phone = customerInfo.getPhone();
         boolean isBindPhone = StringUtils.hasText(phone);
         customerInfoVo.setIsBindPhone(isBindPhone);
+
+        return customerInfoVo;
+    }
+
+    @Override
+    public CustomerInfoVo getCustomerInfo(Long customerId) {
+        // 获取用户信息
+        CustomerInfo customerInfo = customerInfoMapper.selectById(customerId);
+        //创建返回结果
+        CustomerInfoVo customerInfoVo = new CustomerInfoVo();
+
+        //使用bean util复制属性
+        BeanUtils.copyProperties(customerInfo,customerInfoVo);
 
         return customerInfoVo;
     }
