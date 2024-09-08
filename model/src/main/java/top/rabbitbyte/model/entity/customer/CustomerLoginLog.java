@@ -1,5 +1,6 @@
 package top.rabbitbyte.model.entity.customer;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import top.rabbitbyte.model.entity.base.BaseEntity;
@@ -15,6 +16,7 @@ import top.rabbitbyte.model.entity.base.BaseEntity;
 
 @Data
 @Schema(description = "CustomerLoginLog")
+@TableName("customer_login_log")
 public class CustomerLoginLog extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
