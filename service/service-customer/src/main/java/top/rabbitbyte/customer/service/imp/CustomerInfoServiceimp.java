@@ -16,6 +16,7 @@ import top.rabbitbyte.customer.service.CustomerInfoService;
 import top.rabbitbyte.model.entity.customer.CustomerInfo;
 import top.rabbitbyte.model.entity.customer.CustomerLoginLog;
 import top.rabbitbyte.model.form.customer.UpdateWxPhoneForm;
+import top.rabbitbyte.model.form.customer.WeixinLoginFrom.UserInfo;
 import top.rabbitbyte.model.vo.customer.CustomerInfoVo;
 import top.rabbitbyte.model.vo.customer.CustomerLoginVo;
 
@@ -39,7 +40,8 @@ public class CustomerInfoServiceimp extends ServiceImpl<CustomerInfoMapper, Cust
     @Autowired
     private CustomerLoginLogMapper customerLoginLogMapper;
     @Override
-    public Long login(String code) {
+    public UserInfo login(String code) {
+        UserInfo userInfo = new UserInfo();
 
         String openId = null;
 
@@ -63,13 +65,16 @@ public class CustomerInfoServiceimp extends ServiceImpl<CustomerInfoMapper, Cust
             customerInfo.setWxOpenId(openId);
             customerInfoMapper.insert(customerInfo);
         }
+        //再将数据查询出来
+        CustomerInfo customer2User =  customerInfoMapper.selectOne(queryWrapper);
+        BeanUtils.copyProperties(customer2User,userInfo);
 
         //写入日志
         CustomerLoginLog customerLoginLog = new CustomerLoginLog();
         customerLoginLog.setCustomerId(customerInfo.getId());
         customerLoginLog.setMsg("小程序登陆");
         customerLoginLogMapper.insert(customerLoginLog);
-        return null;
+        return userInfo;
     }
 
     @Override

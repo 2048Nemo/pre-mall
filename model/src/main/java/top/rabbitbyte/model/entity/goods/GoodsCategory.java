@@ -42,6 +42,9 @@ public class GoodsCategory extends BaseEntity {
     */
     @ApiModelProperty("排序，数字越小越靠前")
     private Integer sort;
+
+    @ApiModelProperty("图标")
+    private String iconUrl;
     /**
     * 创建时间
     */

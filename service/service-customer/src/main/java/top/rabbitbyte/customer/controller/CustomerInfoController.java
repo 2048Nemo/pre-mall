@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import result.Result;
 import top.rabbitbyte.customer.service.CustomerInfoService;
 import top.rabbitbyte.model.form.customer.UpdateWxPhoneForm;
+import top.rabbitbyte.model.form.customer.WeixinLoginFrom.UserInfo;
+import top.rabbitbyte.model.form.customer.WeixinLoginFrom.WeixinLoginForm;
 import top.rabbitbyte.model.vo.customer.CustomerInfoVo;
 import top.rabbitbyte.model.vo.customer.CustomerLoginVo;
 
@@ -44,9 +46,9 @@ public class CustomerInfoController {
 
 	//微信小程序登录接口
 	@Operation(summary = "小程序授权登录")
-	@GetMapping("/login/{code}")
-	public Result<Long> login(@PathVariable String code) {
-		return Result.ok(customerInfoService.login(code));
+	@PostMapping("/loginByWeixin")
+	public Result<UserInfo> login(@RequestBody WeixinLoginForm weixinLoginForm) {
+		return Result.ok(customerInfoService.login(weixinLoginForm.getCode()));
 	}
 
 	@Operation(summary = "更新客户微信手机号码")

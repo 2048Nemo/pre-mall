@@ -5,13 +5,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
 import top.rabbitbyte.model.entity.customer.CustomerInfo;
 import top.rabbitbyte.model.form.customer.UpdateWxPhoneForm;
+import top.rabbitbyte.model.form.customer.WeixinLoginFrom.UserInfo;
 import top.rabbitbyte.model.vo.customer.CustomerInfoVo;
 import top.rabbitbyte.model.vo.customer.CustomerLoginVo;
 
 
 public interface CustomerInfoService extends IService<CustomerInfo> {
     //微信小程序登录接口
-    Long login(String code);
+    UserInfo login(String code);
 
     //获取客户登录信息
     CustomerLoginVo getCustomerLoginInfo(Long customerId);

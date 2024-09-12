@@ -25,7 +25,7 @@ import java.util.Map;
 public class BaseEntity implements Serializable {
 
     @TableId(type = IdType.AUTO)
-    private Long id;
+    public Long id;
 
     @TableField("create_time")
     private Date createTime;
@@ -41,5 +41,5 @@ public class BaseEntity implements Serializable {
 
     @JsonIgnore
     @TableField(exist = false)
-    private Map<String,Object> param = new HashMap<>();
+    private Map<String, Object> param = new HashMap<>();
 }
