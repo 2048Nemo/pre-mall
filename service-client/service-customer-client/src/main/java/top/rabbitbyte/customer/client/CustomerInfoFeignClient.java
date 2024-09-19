@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import result.Result;
+import top.rabbitbyte.comon.utils.result.Result;
 import top.rabbitbyte.model.form.customer.UpdateWxPhoneForm;
 import top.rabbitbyte.model.vo.customer.CustomerInfoVo;
 import top.rabbitbyte.model.vo.customer.CustomerLoginVo;

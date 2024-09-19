@@ -5,10 +5,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import result.Result;
+import top.rabbitbyte.comon.utils.result.Result;
 import top.rabbitbyte.goods.service.CategoryService;
 import top.rabbitbyte.model.vo.goods.CataLogPageVo;
+import top.rabbitbyte.model.vo.goods.CategoryPageVo;
 import top.rabbitbyte.model.vo.goods.CategoryVo;
+import top.rabbitbyte.model.vo.goods.GoodsSkuVo;
 
 import java.util.List;
 
@@ -38,4 +40,19 @@ public class CategoryController {
     public Result<List<CategoryVo>> getCurrentCataLog(@PathVariable Integer cataLogId){
         return Result.ok(categoryService.getCatgoryListById(cataLogId));
     }
+
+    @Schema(description = "获得兄弟分类数据以及当前分类类子spu")
+    @GetMapping("/index/{cateid}")
+    public Result<CategoryPageVo> getBrotherCategoryAndCurrentGoodsList(@PathVariable Integer cateid){
+        return Result.ok(categoryService.getBroCateAndGoodsList(cateid));
+    }
+    @Schema(description = "获得兄弟分类数据以及当前分类类子spu")
+    @GetMapping("/{cateid}")
+    public Result<CategoryPageVo> getGoodsList(@PathVariable Integer cateid,
+                                              @RequestParam(value = "page", defaultValue = "1") Integer page,
+                                              @RequestParam(value = "size", defaultValue = "10") Integer size
+    ){
+        return Result.ok(categoryService.getGoodsList(cateid,page,size));
+    }
+
 }

@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import jakarta.annotation.Resource;
-import org.redisson.RedissonLock;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
@@ -13,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import result.Result;
-import result.ResultCodeEnum;
+import top.rabbitbyte.comon.utils.result.Result;
+import top.rabbitbyte.comon.utils.result.ResultCodeEnum;
 import top.rabbitbyte.coupon.mapper.CouponInfoMapper;
 import top.rabbitbyte.coupon.mapper.CustomerCouponMapper;
 import top.rabbitbyte.coupon.service.CouponInfoService;
@@ -29,7 +27,6 @@ import top.rabbitbyte.serviceutil.exception.PreMallException;
 
 
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @BelongsProject: pre-mall

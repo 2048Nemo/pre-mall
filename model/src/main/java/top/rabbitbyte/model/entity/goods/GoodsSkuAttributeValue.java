@@ -41,5 +41,4 @@ public class GoodsSkuAttributeValue implements Serializable {
     @Length(max= 255,message="编码长度不能超过255")
     private String attrValue;
 
-
 }

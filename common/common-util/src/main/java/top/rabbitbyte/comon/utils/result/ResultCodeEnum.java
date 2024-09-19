@@ -1,4 +1,4 @@
-package result;
+package top.rabbitbyte.comon.utils.result;
 
 /**
  * @BelongsProject: pre-mall

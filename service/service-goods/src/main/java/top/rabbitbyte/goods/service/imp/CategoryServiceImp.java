@@ -2,15 +2,23 @@ package top.rabbitbyte.goods.service.imp;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.rabbitbyte.goods.mapper.GoodsCategoryMapper;
+import top.rabbitbyte.goods.mapper.GoodsSkuMapper;
+import top.rabbitbyte.goods.mapper.GoodsSpuMapper;
 import top.rabbitbyte.goods.service.CategoryService;
 import top.rabbitbyte.model.entity.goods.GoodsCategory;
+import top.rabbitbyte.model.entity.goods.GoodsSku;
+import top.rabbitbyte.model.entity.goods.GoodsSpu;
 import top.rabbitbyte.model.vo.goods.CataLogPageVo;
+import top.rabbitbyte.model.vo.goods.CategoryPageVo;
 import top.rabbitbyte.model.vo.goods.CategoryVo;
+import com.github.pagehelper.PageHelper;
+import top.rabbitbyte.model.vo.goods.GoodsSkuVo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +37,12 @@ import java.util.stream.Collectors;
 public class CategoryServiceImp extends ServiceImpl<GoodsCategoryMapper, GoodsCategory> implements CategoryService {
     @Autowired
     GoodsCategoryMapper goodsCategoryMapper;
+
+    @Autowired
+    GoodsSpuMapper goodsSpuMapper;
+
+    @Autowired
+    GoodsSkuMapper goodsSkuMapper;
 
     @Override
     public CataLogPageVo getAllCatalog() {
@@ -80,5 +94,41 @@ public class CategoryServiceImp extends ServiceImpl<GoodsCategoryMapper, GoodsCa
                     return categoryVo;
                 }).toList();
         return res;
+    }
+
+    @Override
+    public CategoryPageVo getBroCateAndGoodsList(Integer cateid) {
+        CategoryPageVo categoryPageVo = new CategoryPageVo();
+
+        GoodsCategory temp =  goodsCategoryMapper.selectOne(new LambdaQueryWrapper<GoodsCategory>().eq(GoodsCategory::getId,cateid));
+        List<GoodsCategory> bro= goodsCategoryMapper.selectList(new LambdaQueryWrapper<GoodsCategory>().eq(GoodsCategory::getParentId,temp.getParentId()));
+        categoryPageVo.setBrotherCategory(bro);
+
+        List<GoodsSkuVo> goodsList = goodsSkuMapper.getListByCateid(cateid)
+                .stream().map(good -> {
+                    GoodsSkuVo goodVo = new GoodsSkuVo();
+                    BeanUtils.copyProperties(good,goodVo);
+                    goodVo.setPrimaryPicUrl(good.getImage());
+                    return goodVo;
+                }).toList();
+        categoryPageVo.setGoodsList(goodsList);
+        return categoryPageVo;
+    }
+
+    @Override
+    public CategoryPageVo getGoodsList(Integer cateid, Integer page, Integer size) {
+
+        CategoryPageVo categoryPageVo = new CategoryPageVo();
+        PageHelper.startPage(page,size);
+        List<GoodsSkuVo>  skus = goodsSkuMapper.getListByCateid(cateid)
+                .stream().map(good -> {
+                    GoodsSkuVo goodVo = new GoodsSkuVo();
+                    BeanUtils.copyProperties(good,goodVo);
+                    goodVo.setPrimaryPicUrl(good.getImage());
+                    return goodVo;
+                }).toList();
+
+        categoryPageVo.setGoodsList(skus);
+        return categoryPageVo;
     }
 }

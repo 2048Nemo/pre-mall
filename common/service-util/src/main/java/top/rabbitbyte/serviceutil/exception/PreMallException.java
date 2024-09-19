@@ -1,9 +1,8 @@
 package top.rabbitbyte.serviceutil.exception;
 
 import lombok.Data;
-import result.ResultCodeEnum;
+import top.rabbitbyte.comon.utils.result.ResultCodeEnum;
 
-import java.security.PublicKey;
 
 /**
  * @BelongsProject: pre-mall

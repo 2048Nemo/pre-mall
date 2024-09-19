@@ -33,28 +33,11 @@ public class GoodsSpu extends BaseEntity {
     @ApiModelProperty("商品名称")
     @Length(max= 50,message="编码长度不能超过50")
     private String name;
-    /**
-    * 商品标题
-    */
-    @Size(max= 255,message="编码长度不能超过255")
-    @ApiModelProperty("商品标题")
-    @Length(max= 255,message="编码长度不能超过255")
-    private String title;
-    /**
-    * 商品描述
-    */
-    @Size(max= -1,message="编码长度不能超过-1")
-    @ApiModelProperty("商品描述")
-    @Length(max= -1,message="编码长度不能超过-1")
-    private String description;
+
     /**
     * 商品类别
     */
     @ApiModelProperty("商品类别")
     private Long categoryId;
-    /**
-    * 商品状态（0 -下架，1 - 上架）
-    */
-    @ApiModelProperty("商品状态（0 -下架，1 - 上架）")
-    private Integer status;
+
 }

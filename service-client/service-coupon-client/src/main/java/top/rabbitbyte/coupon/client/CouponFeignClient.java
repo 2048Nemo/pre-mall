@@ -4,7 +4,7 @@ package top.rabbitbyte.coupon.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import result.Result;
+import top.rabbitbyte.comon.utils.result.Result;
 import top.rabbitbyte.model.vo.base.PageVo;
 import top.rabbitbyte.model.vo.coupon.NoReceiveCouponVo;
 

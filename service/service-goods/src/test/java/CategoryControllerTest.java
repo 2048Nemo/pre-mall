@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import result.Result;
+import top.rabbitbyte.comon.utils.result.Result;
 import top.rabbitbyte.goods.controller.CategoryController;
 import top.rabbitbyte.goods.service.CategoryService;
 import top.rabbitbyte.model.vo.goods.CataLogPageVo;
