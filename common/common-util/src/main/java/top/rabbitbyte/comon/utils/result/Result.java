@@ -9,6 +9,7 @@ package top.rabbitbyte.comon.utils.result;
  * @Version: 1.0
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 /**
@@ -88,4 +89,9 @@ public class Result<T> {
         this.setCode(code);
         return this;
     }
+    @JsonIgnore
+    public Boolean isSuccess(){
+        return this.getCode().intValue()== ResultCodeEnum.SUCCESS.getCode().intValue();
+    }
+
 }

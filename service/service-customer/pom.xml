@@ -29,6 +29,12 @@
             <artifactId>model</artifactId>
             <version>1.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-goods-client</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

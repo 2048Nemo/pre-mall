@@ -12,6 +12,7 @@ import top.rabbitbyte.model.form.customer.WeixinLoginFrom.UserInfo;
 import top.rabbitbyte.model.form.customer.WeixinLoginFrom.WeixinLoginForm;
 import top.rabbitbyte.model.vo.customer.CustomerInfoVo;
 import top.rabbitbyte.model.vo.customer.CustomerLoginVo;
+import top.rabbitbyte.model.vo.goods.goodsDetailVo.SellerInfo;
 
 @Slf4j
 @Tag(name = "客户信息接口信息")
@@ -61,6 +62,12 @@ public class CustomerInfoController {
 	@GetMapping("/getCustomerOpenId/{customerId}")
 	public Result<String> getCustomerOpenId(@PathVariable Long customerId) {
 		return Result.ok(customerInfoService.getCustomerOpenId(customerId));
+	}
+
+	@Operation(summary = "获取客户OpenId")
+	@GetMapping("/getSellerInfo/{venderId}")
+	Result<SellerInfo> getSellerInfo(@PathVariable Integer venderId){
+		return Result.ok(customerInfoService.getSellerInfo(venderId));
 	}
 }
 

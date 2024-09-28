@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 import top.rabbitbyte.model.entity.goods.GoodsCategory;
 
 @Mapper
-@Repository
 public interface GoodsCategoryMapper extends BaseMapper<GoodsCategory> {
 }

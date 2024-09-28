@@ -13,12 +13,14 @@ import org.springframework.util.StringUtils;
 import top.rabbitbyte.customer.mapper.CustomerInfoMapper;
 import top.rabbitbyte.customer.mapper.CustomerLoginLogMapper;
 import top.rabbitbyte.customer.service.CustomerInfoService;
+import top.rabbitbyte.goods.client.GoodsInfoFeignClient;
 import top.rabbitbyte.model.entity.customer.CustomerInfo;
 import top.rabbitbyte.model.entity.customer.CustomerLoginLog;
 import top.rabbitbyte.model.form.customer.UpdateWxPhoneForm;
 import top.rabbitbyte.model.form.customer.WeixinLoginFrom.UserInfo;
 import top.rabbitbyte.model.vo.customer.CustomerInfoVo;
 import top.rabbitbyte.model.vo.customer.CustomerLoginVo;
+import top.rabbitbyte.model.vo.goods.goodsDetailVo.SellerInfo;
 
 /**
  * @BelongsProject: pre-mall
@@ -39,6 +41,9 @@ public class CustomerInfoServiceimp extends ServiceImpl<CustomerInfoMapper, Cust
 
     @Autowired
     private CustomerLoginLogMapper customerLoginLogMapper;
+
+    @Autowired
+    private GoodsInfoFeignClient goodsInfoFeignClient;
     @Override
     public UserInfo login(String code) {
         UserInfo userInfo = new UserInfo();
@@ -133,5 +138,13 @@ public class CustomerInfoServiceimp extends ServiceImpl<CustomerInfoMapper, Cust
         queryWrapper.eq(CustomerInfo::getId,customerId);
         CustomerInfo customerInfo = customerInfoMapper.selectOne(queryWrapper);
         return customerInfo.getWxOpenId();
+    }
+
+    //由于涉及到另一张表soldCount参数需要跨微服务调用查询了
+    @Override
+    public SellerInfo getSellerInfo(Integer venderId) {
+        SellerInfo sellerInfo = SellerInfo.CustomerInfoConvert(customerInfoMapper.selectById(venderId));
+        sellerInfo.setSoldCount(goodsInfoFeignClient.getPersonSoldCount(venderId));
+        return sellerInfo;
     }
 }

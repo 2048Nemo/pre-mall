@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import top.rabbitbyte.model.entity.goods.GoodsCategory;
-import top.rabbitbyte.model.entity.goods.GoodsSku;
 import top.rabbitbyte.model.entity.goods.GoodsSpu;
 
 import java.util.List;

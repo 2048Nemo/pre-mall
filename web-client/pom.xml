@@ -10,7 +10,7 @@
     </parent>
 
     <modules>
-<!--        <module>web-customer</module>-->
+        <module>web-customer</module>
 <!--        <module>web-driver</module>-->
 <!--        <module>web-mgr</module>-->
     </modules>
@@ -35,11 +35,16 @@
             <artifactId>service-system-client</artifactId>
             <version>1.0</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>top.rabbitbyte</groupId>-->
-<!--            <artifactId>service-coupon-client</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-coupon-client</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-customer-client</artifactId>
+            <version>1.0</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>top.rabbitbyte</groupId>-->
 <!--            <artifactId>service-driver-client</artifactId>-->
@@ -55,11 +60,11 @@
 <!--            <artifactId>service-customer-client</artifactId>-->
 <!--            <version>1.0</version>-->
 <!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>top.rabbitbyte</groupId>-->
-<!--            <artifactId>service-map-client</artifactId>-->
-<!--            <version>1.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>top.rabbitbyte</groupId>
+            <artifactId>service-goods</artifactId>
+            <version>1.0</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>top.rabbitbyte</groupId>-->
 <!--            <artifactId>service-rules-client</artifactId>-->

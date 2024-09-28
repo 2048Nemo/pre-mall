@@ -8,14 +8,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import top.rabbitbyte.comon.utils.result.Result;
 import top.rabbitbyte.model.form.customer.UpdateWxPhoneForm;
+import top.rabbitbyte.model.form.customer.WeixinLoginFrom.UserInfo;
 import top.rabbitbyte.model.vo.customer.CustomerInfoVo;
 import top.rabbitbyte.model.vo.customer.CustomerLoginVo;
+import top.rabbitbyte.model.vo.goods.goodsDetailVo.SellerInfo;
+
+import java.awt.datatransfer.Clipboard;
 
 @FeignClient(value = "service-customer")
 public interface CustomerInfoFeignClient {
 
     @GetMapping("/customer/info/login/{code}")
-    public Result<Long> login(@PathVariable String code);
+    public Result<UserInfo> login(@PathVariable String code);
 
     @GetMapping("/customer/info/getCustomerLoginInfo/{customerId}")
     Result<CustomerLoginVo> getCustomerLoginInfo(@PathVariable("customerId") Long customerId);
@@ -42,4 +46,7 @@ public interface CustomerInfoFeignClient {
      */
     @GetMapping("/customer/info/getCustomerOpenId/{customerId}")
     Result<String> getCustomerOpenId(@PathVariable("customerId") Long customerId);
+
+    @GetMapping("/customer/info/getSellerInfo/{venderId}")
+    Result<SellerInfo> getSellerInfo(@PathVariable("venderId")Integer venderId);
 }

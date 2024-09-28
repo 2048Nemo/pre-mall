@@ -8,11 +8,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.rabbitbyte.goods.mapper.GoodsCategoryMapper;
-import top.rabbitbyte.goods.mapper.GoodsSkuMapper;
+import top.rabbitbyte.goods.mapper.GoodsInfoMapper;
 import top.rabbitbyte.goods.mapper.GoodsSpuMapper;
 import top.rabbitbyte.goods.service.CategoryService;
 import top.rabbitbyte.model.entity.goods.GoodsCategory;
-import top.rabbitbyte.model.entity.goods.GoodsSku;
 import top.rabbitbyte.model.entity.goods.GoodsSpu;
 import top.rabbitbyte.model.vo.goods.CataLogPageVo;
 import top.rabbitbyte.model.vo.goods.CategoryPageVo;
@@ -42,7 +41,7 @@ public class CategoryServiceImp extends ServiceImpl<GoodsCategoryMapper, GoodsCa
     GoodsSpuMapper goodsSpuMapper;
 
     @Autowired
-    GoodsSkuMapper goodsSkuMapper;
+    GoodsInfoMapper goodsInfoMapper;
 
     @Override
     public CataLogPageVo getAllCatalog() {
@@ -104,7 +103,7 @@ public class CategoryServiceImp extends ServiceImpl<GoodsCategoryMapper, GoodsCa
         List<GoodsCategory> bro= goodsCategoryMapper.selectList(new LambdaQueryWrapper<GoodsCategory>().eq(GoodsCategory::getParentId,temp.getParentId()));
         categoryPageVo.setBrotherCategory(bro);
 
-        List<GoodsSkuVo> goodsList = goodsSkuMapper.getListByCateid(cateid)
+        List<GoodsSkuVo> goodsList = goodsInfoMapper.getListByCateid(cateid)
                 .stream().map(good -> {
                     GoodsSkuVo goodVo = new GoodsSkuVo();
                     BeanUtils.copyProperties(good,goodVo);
@@ -120,7 +119,7 @@ public class CategoryServiceImp extends ServiceImpl<GoodsCategoryMapper, GoodsCa
 
         CategoryPageVo categoryPageVo = new CategoryPageVo();
         PageHelper.startPage(page,size);
-        List<GoodsSkuVo>  skus = goodsSkuMapper.getListByCateid(cateid)
+        List<GoodsSkuVo>  skus = goodsInfoMapper.getListByCateid(cateid)
                 .stream().map(good -> {
                     GoodsSkuVo goodVo = new GoodsSkuVo();
                     BeanUtils.copyProperties(good,goodVo);
