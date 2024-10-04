@@ -26,4 +26,6 @@ public interface CustomerInfoService extends IService<CustomerInfo> {
     String getCustomerOpenId(Long customerId);
 
     SellerInfo getSellerInfo(Integer venderId);
+
+    Boolean isCollected(Integer goodsid);
 }

@@ -20,9 +20,9 @@ public class GoodsDetailVo  {
     private SellerInfo seller;
     private List<Comment> comment;
     private List<RelatedGoods> relatedGoods;
-    private Integer userHasCollect;
+    private Boolean userHasCollect;
 
-    public GoodsDetailVo(GoodsInfoVo info, List<GoodsGallery> gallery, SellerInfo seller, List<Comment> comment, List<RelatedGoods> relatedGoods, Integer userHasCollect) {
+    public GoodsDetailVo(GoodsInfoVo info, List<GoodsGallery> gallery, SellerInfo seller, List<Comment> comment, List<RelatedGoods> relatedGoods, Boolean userHasCollect) {
         this.info = info;
         this.gallery = gallery;
         this.seller = seller;
@@ -36,6 +36,6 @@ public class GoodsDetailVo  {
         this.seller = new SellerInfo();
         this.comment = new ArrayList<Comment>();
         this.relatedGoods = new ArrayList<RelatedGoods>();
-        this.userHasCollect = 0;
+        this.userHasCollect = Boolean.FALSE;
     }
 }

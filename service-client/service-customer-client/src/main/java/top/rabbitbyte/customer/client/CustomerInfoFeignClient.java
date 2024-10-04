@@ -49,4 +49,7 @@ public interface CustomerInfoFeignClient {
 
     @GetMapping("/customer/info/getSellerInfo/{venderId}")
     Result<SellerInfo> getSellerInfo(@PathVariable("venderId")Integer venderId);
+
+    @GetMapping("/customer/info/isCollected/{goodsid}")
+    Result<Boolean> isCollected(@PathVariable("goodsid") Integer goodsid);
 }

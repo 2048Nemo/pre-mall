@@ -69,5 +69,10 @@ public class CustomerInfoController {
 	Result<SellerInfo> getSellerInfo(@PathVariable Integer venderId){
 		return Result.ok(customerInfoService.getSellerInfo(venderId));
 	}
+
+	@GetMapping("/isCollected/{goodsid}")
+	Result<Boolean> isCollected(@PathVariable("goodsid") Integer goodsid){
+		return Result.ok(customerInfoService.isCollected(goodsid));
+	}
 }
 

@@ -10,10 +10,12 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import top.rabbitbyte.customer.mapper.CustomerCollectMapper;
 import top.rabbitbyte.customer.mapper.CustomerInfoMapper;
 import top.rabbitbyte.customer.mapper.CustomerLoginLogMapper;
 import top.rabbitbyte.customer.service.CustomerInfoService;
 import top.rabbitbyte.goods.client.GoodsInfoFeignClient;
+import top.rabbitbyte.model.entity.customer.CustomerCollect;
 import top.rabbitbyte.model.entity.customer.CustomerInfo;
 import top.rabbitbyte.model.entity.customer.CustomerLoginLog;
 import top.rabbitbyte.model.form.customer.UpdateWxPhoneForm;
@@ -44,6 +46,9 @@ public class CustomerInfoServiceimp extends ServiceImpl<CustomerInfoMapper, Cust
 
     @Autowired
     private GoodsInfoFeignClient goodsInfoFeignClient;
+
+    @Autowired
+    private CustomerCollectMapper customerCollectMapper;
     @Override
     public UserInfo login(String code) {
         UserInfo userInfo = new UserInfo();
@@ -146,5 +151,11 @@ public class CustomerInfoServiceimp extends ServiceImpl<CustomerInfoMapper, Cust
         SellerInfo sellerInfo = SellerInfo.CustomerInfoConvert(customerInfoMapper.selectById(venderId));
         sellerInfo.setSoldCount(goodsInfoFeignClient.getPersonSoldCount(venderId));
         return sellerInfo;
+    }
+
+    @Override
+    public Boolean isCollected(Integer goodsid) {
+        CustomerCollect customerCollect  = customerCollectMapper.selectOne(new LambdaQueryWrapper<CustomerCollect>().eq(CustomerCollect::getGoodsId,goodsid));
+        return customerCollect != null;
     }
 }

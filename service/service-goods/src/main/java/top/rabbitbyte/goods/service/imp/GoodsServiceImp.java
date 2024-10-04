@@ -15,6 +15,7 @@ import top.rabbitbyte.model.entity.goods.GoodsInfo;
 import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsDetailVo;
 import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsGallery;
 import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsInfoVo;
+import top.rabbitbyte.model.vo.goods.goodsDetailVo.RelatedGoods;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,5 +61,22 @@ public class GoodsServiceImp extends ServiceImpl<GoodsInfoMapper, GoodsInfo> imp
     @Override
     public Integer getPersonSoldCount(Integer venderid) {
         return goodsInfoMapper.getPersonSoldCount(venderid);
+    }
+
+    @Override
+    public List<RelatedGoods> getRelatedGoods(Long goodsid) {
+        return goodsInfoMapper.getRelatedGoodsCategorys(goodsid).stream().map(item -> {
+            RelatedGoods relatedGoods = RelatedGoods.fromGoodsInfo(item);
+           return relatedGoods;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public String wantGoods(Integer goodsid, String sellerid) {
+        return getChatRoomId(goodsid, sellerid);
+    }
+
+    public String getChatRoomId(Integer goodsid, String sellerid) {
+        return goodsid.toString() + sellerid;
     }
 }

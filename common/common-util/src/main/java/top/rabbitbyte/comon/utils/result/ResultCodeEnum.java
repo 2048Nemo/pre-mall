@@ -29,10 +29,10 @@ public enum ResultCodeEnum {
 
     ARGUMENT_VALID_ERROR(210, "参数校验异常"),
     SIGN_ERROR(300, "签名错误"),
-    SIGN_OVERDUE(301, "签名已过期"),
-    VALIDATECODE_ERROR(218 , "验证码错误"),
+    TOKEN_IS_EXPIRED(301, "token已过期"),
+    TOKEN_IS_WRONG(218 , "token错误"),
 
-    LOGIN_AUTH(208, "未登陆"),
+    TOKEN_IS_EMPTY(208, "token为空"),
     PERMISSION(209, "没有权限"),
     ACCOUNT_ERROR(214, "账号不正确"),
     PASSWORD_ERROR(215, "密码不正确"),

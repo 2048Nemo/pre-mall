@@ -2,11 +2,10 @@ package top.rabbitbyte.webcustomer.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import top.rabbitbyte.comon.utils.result.JWTUser;
 import top.rabbitbyte.comon.utils.result.Result;
+import top.rabbitbyte.comon.utils.token.injection.JWT;
 import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsDetailVo;
 import top.rabbitbyte.webcustomer.service.WebGoodsService;
 
@@ -30,5 +29,10 @@ public class WebGoodsController {
     @GetMapping("/detail/{goodsid}")
     public Result<GoodsDetailVo> getGoodDetailInfo(@PathVariable Integer goodsid ){
         return Result.ok(webGoodsService.getGoodDetailInfo(goodsid));
+    }
+    @PostMapping("/user/want/{goodsid}/{sellerid}")
+    public Result<String> wantGoods(@JWT JWTUser jwtuser, @PathVariable("goodsid") Integer goodsid,
+                                    @PathVariable("sellerid") String sellerid){
+        return Result.ok(webGoodsService.wantGoods(jwtuser,goodsid, sellerid));
     }
 }

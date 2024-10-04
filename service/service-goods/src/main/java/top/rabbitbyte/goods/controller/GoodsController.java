@@ -3,16 +3,14 @@ package top.rabbitbyte.goods.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import top.rabbitbyte.comon.utils.result.JWTUser;
 import top.rabbitbyte.comon.utils.result.Result;
+import top.rabbitbyte.comon.utils.token.injection.JWT;
 import top.rabbitbyte.goods.service.GoodsService;
 import top.rabbitbyte.model.entity.goods.GoodsInfo;
-import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsDetailVo;
 import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsGallery;
-import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsInfoVo;
+import top.rabbitbyte.model.vo.goods.goodsDetailVo.RelatedGoods;
 
 import java.util.List;
 
@@ -45,5 +43,16 @@ public class GoodsController {
     @GetMapping("/person/soldcount/{venderid}")
     Integer getPersonSoldCount(@PathVariable Integer venderid){
         return goodsService.getPersonSoldCount(venderid);
+    }
+
+    @GetMapping("/related/{goodsid}")
+    List<RelatedGoods> getRelatedGoods(@PathVariable Long goodsid){
+        return goodsService.getRelatedGoods(goodsid);
+    }
+
+    @PostMapping("/user/want/{goodsid}/{sellerid}")
+    public Result<String> wantGoods(@JWT JWTUser jwtuser, @PathVariable("goodsid") Integer goodsid,
+                                    @PathVariable("sellerid") String sellerid) {
+        return Result.ok(goodsService.wantGoods(goodsid, sellerid));
     }
 }

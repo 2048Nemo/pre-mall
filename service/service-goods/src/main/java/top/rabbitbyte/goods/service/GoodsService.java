@@ -6,6 +6,7 @@ import top.rabbitbyte.model.entity.goods.GoodsInfo;
 import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsDetailVo;
 import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsGallery;
 import top.rabbitbyte.model.vo.goods.goodsDetailVo.GoodsInfoVo;
+import top.rabbitbyte.model.vo.goods.goodsDetailVo.RelatedGoods;
 
 import java.util.List;
 
@@ -16,4 +17,8 @@ public interface GoodsService extends IService<GoodsInfo> {
     List<GoodsGallery> getGoodImages(Integer goodsid);
 
     Integer getPersonSoldCount(Integer venderid);
+
+    List<RelatedGoods> getRelatedGoods(Long goodsid);
+
+    String wantGoods(Integer goodsid, String sellerid);
 }

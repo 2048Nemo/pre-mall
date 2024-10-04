@@ -2,6 +2,7 @@ package top.rabbitbyte.webcustomer.service.imp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.rabbitbyte.comon.utils.result.JWTUser;
 import top.rabbitbyte.customer.client.CustomerInfoFeignClient;
 import top.rabbitbyte.goods.client.GoodsInfoFeignClient;
 import top.rabbitbyte.model.coverter.GoodsInfoConverter;
@@ -52,10 +53,20 @@ public class WebGoodsServiceImp implements WebGoodsService {
         SellerInfo seller = customerInfoFeignClient.getSellerInfo(goodsinfo.getVenderId()).getData();
         goodsDetailVo.setSeller(seller);
 
+        //4.relatedGoods 根据传入的货物id 联合货物所属品类的spuid 查找parent spuid 下的同类商品
+        //todo 待优化：加入es等智能的搜索
+        goodsDetailVo.setRelatedGoods(goodsInfoFeignClient.getRelatedGoods(goodsinfo.getId()));
+
+        //5.userHasCollect 需要添加一个字段在用户表
+        goodsDetailVo.setUserHasCollect(customerInfoFeignClient.isCollected(goodsid).getData());
 
         //Todo 尝试异步编排执行查询
-
         return goodsDetailVo;
+    }
+
+    @Override
+    public String wantGoods(JWTUser jwtUser,Integer goodsid, String sellerid) {
+        return goodsInfoFeignClient.wantGoods(jwtUser,goodsid,sellerid).getData();
     }
 
 }
